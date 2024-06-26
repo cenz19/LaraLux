@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HotelType;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 class HotelController extends Controller
@@ -13,7 +14,8 @@ class HotelController extends Controller
     {
         //
         $hotel_index_controller =Hotel::all();
-        return view('hotel.index', compact('hotel_index_controller'));
+        $hotel_type_controller = HotelType::all();
+        return view('hotel.index', compact('hotel_index_controller', 'hotel_type_controller'));
     }
 
     /**
@@ -22,6 +24,7 @@ class HotelController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -30,6 +33,23 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new Hotel();
+        $hotel_name = $request->form_hotel_name;
+        $address = $request->form_address;
+        $phone_number = $request->form_phone_number;
+        $email = $request->form_email;
+        $hotel_type_id = $request->form_hotel_type_id;
+
+        $data->hotel_name = $hotel_name;
+        $data->address = $address;
+        $data->phone_number = $phone_number;
+        $data->email = $email;
+        $data->hotel_type_id = $hotel_type_id;
+        $data->created_at = now();
+        $data->updated_at = now();
+
+        $data->save();
+        return redirect()->route('hotel.index')->with('status','Hooray ! Data successfully added');
     }
 
     /**

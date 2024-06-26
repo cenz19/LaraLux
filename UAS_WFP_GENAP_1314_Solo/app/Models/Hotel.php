@@ -12,4 +12,9 @@ class Hotel extends Model
     {
         return $this->hasMany(Product::class, 'hotel_id','id');
     }
+
+    public function hotel_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(HotelType::class, 'hotel_type_id');
+    }
 }

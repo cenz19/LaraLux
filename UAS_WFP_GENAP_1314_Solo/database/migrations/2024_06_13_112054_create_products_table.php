@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('product_name');
-            $table->string('hotel_name');
             $table->string('product_type');
             $table->double('price');
             $table->unsignedBigInteger('hotel_id');

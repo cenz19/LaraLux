@@ -14,7 +14,7 @@ use App\Http\Controllers\HotelController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hotel');
 });
 
 Route::resource('hotel', HotelController::class);

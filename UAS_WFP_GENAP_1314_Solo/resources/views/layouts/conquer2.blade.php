@@ -418,7 +418,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <li class="dropdown user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                     <img alt="" src="assets/img/avatar3_small.jpg"/>
-                    <span class="username username-hide-on-mobile">{{Auth::user()->name}}</span>
+{{--                    <span class="username username-hide-on-mobile">{{Auth::user()->name}}</span>--}}
                     <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
@@ -444,11 +444,11 @@ License: You must have a valid license purchased only from themeforest(the above
 {{--                        <a href="login.html"><i class="fa fa-key"></i> Log Out</a>--}}
 {{--                    </li>--}}
                     <li>
-                        <form action="{{route('logout')}}" method="post">
-                            @csrf
-                            <i class="fa fa-key"></i>
-                            <input type="submit" value="logout" class='btn btn-danger'/>
-                        </form>
+{{--                        <form action="{{route('logout')}}" method="post">--}}
+{{--                            @csrf--}}
+{{--                            <i class="fa fa-key"></i>--}}
+{{--                            <input type="submit" value="logout" class='btn btn-danger'/>--}}
+{{--                        </form>--}}
                     </li>
 
                 </ul>
@@ -500,13 +500,13 @@ License: You must have a valid license purchased only from themeforest(the above
 {{--                        <span class="selected"></span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
-{{--                <li class="start active ">--}}
-{{--                    <a href={{ route('hotel.index') }}>--}}
-{{--                        <i class="icon-home"></i>--}}
-{{--                        <span class="title">Hotel</span>--}}
-{{--                        <span class="selected"></span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="start active ">
+                    <a href={{ route('hotel.index') }}>
+                        <i class="icon-home"></i>
+                        <span class="title">Hotel</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
 {{--                <li class="start active ">--}}
 {{--                    <a href={{ route('product.index') }}>--}}
 {{--                        <i class="icon-home"></i>--}}

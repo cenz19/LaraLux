@@ -507,13 +507,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="selected"></span>
                     </a>
                 </li>
-{{--                <li class="start active ">--}}
-{{--                    <a href={{ route('product.index') }}>--}}
-{{--                        <i class="icon-home"></i>--}}
-{{--                        <span class="title">Product</span>--}}
-{{--                        <span class="selected"></span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="start active ">
+                    <a href={{ route('product.index') }}>
+                        <i class="icon-present"></i>
+                        <span class="title">Product</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
 {{--                <li class="start active ">--}}
 {{--                    <a href={{ route('type.index') }}>--}}
 {{--                        <i class="icon-home"></i>--}}

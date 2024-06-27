@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
 /*
@@ -14,7 +15,17 @@ use App\Http\Controllers\HotelController;
 */
 
 Route::get('/', function () {
-    return view('hotel');
+    return view('welcome');
 });
 
+//$hotel_type_controller = HotelType::all();
+
 Route::resource('hotel', HotelController::class);
+Route::get('hoteltype', [HotelController::class, 'hotel_type_controller_function'])->name('hoteltype.index');
+Route::post('hotel/type/create', [HotelController::class, 'store_type'])->name('hoteltype.store');
+
+
+Route::resource('product', ProductController::class);
+Route::get('producttype', [ProductController::class,  'product_type_controller_function'])->name('producttype.index');
+Route::post('product/type/create', [ProductController::class, 'store_type'])->name('producttype.store');
+

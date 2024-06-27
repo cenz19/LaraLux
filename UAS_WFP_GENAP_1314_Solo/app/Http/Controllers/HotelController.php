@@ -83,4 +83,21 @@ class HotelController extends Controller
     {
         //
     }
+
+    public function hotel_type_controller_function(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $hotel_type_controller = HotelType::all();
+        return view('hoteltype.index', compact('hotel_type_controller'));
+    }
+
+    public function store_type(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $data = new HotelType();
+        $type_name = $request->form_type_name;
+        $data->hotel_type_name = $type_name;
+        $data->created_at = now();
+        $data->updated_at = now();
+        $data->save();
+        return redirect()->route('hoteltype.index')->with('status','Hooray ! Data successfully added');
+    }
 }

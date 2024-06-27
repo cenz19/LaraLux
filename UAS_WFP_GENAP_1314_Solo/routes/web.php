@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
@@ -28,4 +29,6 @@ Route::post('hotel/type/create', [HotelController::class, 'store_type'])->name('
 Route::resource('product', ProductController::class);
 Route::get('producttype', [ProductController::class,  'product_type_controller_function'])->name('producttype.index');
 Route::post('product/type/create', [ProductController::class, 'store_type'])->name('producttype.store');
+
+Route::resource('facility', FacilityController::class);
 

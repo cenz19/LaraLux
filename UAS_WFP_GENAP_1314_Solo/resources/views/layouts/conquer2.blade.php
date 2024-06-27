@@ -465,70 +465,77 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
     <!-- BEGIN SIDEBAR -->
-    <div class="page-sidebar-wrapper">
+    <div class="page-sidebar-wrapper" >
         <div class="page-sidebar navbar-collapse collapse">
             <!-- BEGIN SIDEBAR MENU -->
             <!-- DOC: for circle icon style menu apply page-sidebar-menu-circle-icons class right after sidebar-toggler-wrapper -->
-            <ul class="page-sidebar-menu">
-                <li class="sidebar-toggler-wrapper">
-                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                    <div class="sidebar-toggler">
-                    </div>
-                    <div class="clearfix">
-                    </div>
-                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                </li>
-                <li class="sidebar-search-wrapper">
-                    <form class="search-form" role="form" action="index.html" method="get">
-                        <div class="input-icon right">
-                            <i class="icon-magnifier"></i>
-                            <input type="text" class="form-control" name="query" placeholder="Search...">
+                <ul class="page-sidebar-menu">
+                    <li class="sidebar-toggler-wrapper">
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <div class="sidebar-toggler">
                         </div>
-                    </form>
-                </li>
-{{--                <li class="start active ">--}}
-{{--                    <a href={{ route('dashboard') }}>--}}
-{{--                        <i class="icon-home"></i>--}}
-{{--                        <span class="title">Dashboard</span>--}}
-{{--                        <span class="selected"></span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li class="start active ">--}}
-{{--                    <a href={{ route('customer.index') }}>--}}
-{{--                        <i class="icon-home"></i>--}}
-{{--                        <span class="title">Customer</span>--}}
-{{--                        <span class="selected"></span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-                <li class="start active ">
-                    <a href={{ route('hotel.index') }}>
-                        <i class="icon-home"></i>
-                        <span class="title">Hotel</span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
-                <li class="start active ">
-                    <a href={{ route('product.index') }}>
-                        <i class="icon-present"></i>
-                        <span class="title">Product</span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
-{{--                <li class="start active ">--}}
-{{--                    <a href={{ route('type.index') }}>--}}
-{{--                        <i class="icon-home"></i>--}}
-{{--                        <span class="title">Type</span>--}}
-{{--                        <span class="selected"></span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li class="start active ">--}}
-{{--                    <a href={{ route('transaction.index') }}>--}}
-{{--                        <i class="icon-home"></i>--}}
-{{--                        <span class="title">Transaction</span>--}}
-{{--                        <span class="selected"></span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-            </ul>
+                        <div class="clearfix">
+                        </div>
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    </li>
+                    <li class="sidebar-search-wrapper">
+                        <form class="search-form" role="form" action="index.html" method="get">
+                            <div class="input-icon right">
+                                <i class="icon-magnifier"></i>
+                                <input type="text" class="form-control" name="query" placeholder="Search...">
+                            </div>
+                        </form>
+                    </li>
+                    {{--                <li class="start active ">--}}
+                    {{--                    <a href={{ route('dashboard') }}>--}}
+                    {{--                        <i class="icon-home"></i>--}}
+                    {{--                        <span class="title">Dashboard</span>--}}
+                    {{--                        <span class="selected"></span>--}}
+                    {{--                    </a>--}}
+                    {{--                </li>--}}
+                    {{--                <li class="start active ">--}}
+                    {{--                    <a href={{ route('customer.index') }}>--}}
+                    {{--                        <i class="icon-home"></i>--}}
+                    {{--                        <span class="title">Customer</span>--}}
+                    {{--                        <span class="selected"></span>--}}
+                    {{--                    </a>--}}
+                    {{--                </li>--}}
+                    <li class="start active ">
+                        <a href={{ route('hotel.index') }}>
+                            <i class="icon-home"></i>
+                            <span class="title">Hotels</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    <li class="start active ">
+                        <a href={{ route('product.index') }}>
+                            <i class="icon-present"></i>
+                            <span class="title">Products</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    <li class="start active ">
+                        <a href={{ route('facility.index') }}>
+                            <i class="icon-magic-wand"></i>
+                            <span class="title">Facilities</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    {{--                <li class="start active ">--}}
+                    {{--                    <a href={{ route('type.index') }}>--}}
+                    {{--                        <i class="icon-home"></i>--}}
+                    {{--                        <span class="title">Type</span>--}}
+                    {{--                        <span class="selected"></span>--}}
+                    {{--                    </a>--}}
+                    {{--                </li>--}}
+                    {{--                <li class="start active ">--}}
+                    {{--                    <a href={{ route('transaction.index') }}>--}}
+                    {{--                        <i class="icon-home"></i>--}}
+                    {{--                        <span class="title">Transaction</span>--}}
+                    {{--                        <span class="selected"></span>--}}
+                    {{--                    </a>--}}
+                    {{--                </li>--}}
+                </ul>
             <!-- END SIDEBAR MENU -->
         </div>
     </div>

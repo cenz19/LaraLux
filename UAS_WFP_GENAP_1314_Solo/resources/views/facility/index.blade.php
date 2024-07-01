@@ -111,13 +111,12 @@
                                         <option value="{{$data->id}}">{{$data->product_name}}</option>
                                     @endforeach
                                 </select>
-
                             </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>

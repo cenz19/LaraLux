@@ -22,11 +22,19 @@ Route::get('/', function () {
 //$hotel_type_controller = HotelType::all();
 
 Route::resource('hotel', HotelController::class);
+Route::post('hotel/edit', [HotelController::class, 'getEditFormHotel'])->name('hotel.getEditFormHotel');
+
+
+
+
+
 Route::get('hoteltype', [HotelController::class, 'hotel_type_controller_function'])->name('hoteltype.index');
 Route::post('hotel/type/create', [HotelController::class, 'store_type'])->name('hoteltype.store');
 
 
+
 Route::resource('product', ProductController::class);
+
 Route::get('producttype', [ProductController::class,  'product_type_controller_function'])->name('producttype.index');
 Route::post('product/type/create', [ProductController::class, 'store_type'])->name('producttype.store');
 

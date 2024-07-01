@@ -115,20 +115,18 @@
                                 <input type="number" min="100" step="10" class="form-control" id="available_room" name="form_price"
                                        aria-describedby="nameHelp" placeholder="Enter your Price">
                                 <br>
-                                <br>
                                 <label for="hotel_id">Owned by</label>
                                 <select name="form_hotel_id" id="hotel_id" class="form-control">
                                     @foreach ($product_hotel_id_controller as $data)
                                         <option value="{{$data->id}}">{{$data->hotel_name}}</option>
                                     @endforeach
                                 </select>
-
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>

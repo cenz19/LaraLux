@@ -99,13 +99,13 @@
                                 <label for="name">Type Name</label>
                                 <input type="text" class="form-control" id="name" name="form_type_name"
                                        aria-describedby="nameHelp" placeholder="Enter your Type Name">
-                                <br>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>

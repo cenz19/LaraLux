@@ -23,6 +23,8 @@ Route::get('/', function () {
 //HOTEL
 Route::resource('hotel', HotelController::class);
 Route::post('hotel/edit', [HotelController::class, 'getEditFormHotel'])->name('hotel.getEditFormHotel');
+Route::get('hotel/uploadLogo/{hotel_id}', [HotelController::class, 'uploadLogo']);
+Route::post('hotel/simpanLogo', [HotelController::class, 'simpanLogo']);
 
 //HOTEL TYPE
 Route::get('hoteltype', [HotelController::class, 'hotel_type_controller_function'])->name('hoteltype.index');
@@ -31,6 +33,8 @@ Route::post('hotel/type/create', [HotelController::class, 'store_type'])->name('
 //PRODUCT
 Route::resource('product', ProductController::class);
 Route::post('product/edit', [ProductController::class, 'getEditFormProduct'])->name('product.getEditFormProduct');
+Route::get('product/uploadLogo/{product_id}', [ProductController::class, 'uploadLogo']);
+Route::post('product/simpanLogo', [ProductController::class, 'simpanLogo']);
 
 //PRODUCT TYPE
 Route::get('producttype', [ProductController::class,  'product_type_controller_function'])->name('producttype.index');
@@ -39,4 +43,7 @@ Route::post('product/type/create', [ProductController::class, 'store_type'])->na
 //FACILITY
 Route::resource('facility', FacilityController::class);
 Route::post('facility/edit', [FacilityController::class, 'getEditFormFacility'])->name('facility.getEditFormFacility');
+Route::get('facility/uploadLogo/{facility_id}', [FacilityController::class, 'uploadLogo']);
+Route::post('facility/simpanLogo', [FacilityController::class, 'simpanLogo']);
+
 //TRANSACTION

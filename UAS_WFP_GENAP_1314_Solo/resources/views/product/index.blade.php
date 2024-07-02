@@ -64,6 +64,7 @@
                 <thead>
                 <tr>
                     <th>id</th>
+                    <th>product image</th>
                     <th>product name</th>
                     <th>product type</th>
                     <th>price ($)</th>
@@ -77,6 +78,9 @@
                 @foreach($product_index_controller as $data)
                     <tr>
                         <td>{{$data->id}}</td>
+                        <td>
+                            <img height='100px' width='100px' alt="image of {{$data->product_name}}" src="{{ asset('/logo/product/'.$data->product_image)}}"/><br>
+                        </td>
                         <td>{{$data->product_name}}</td>
                         <td>{{$data->product_type->product_type_name}}</td>
                         <td>{{$data->price}}</td>
@@ -84,6 +88,7 @@
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->updated_at}}</td>
                         <td>
+                            <a href="{{ url('product/uploadLogo/'.$data->id) }}" class="btn btn-success">upload Product Picture</a>
                             <a href="#editModal" class="btn btn-warning" data-toggle="modal" onclick="getEditFormProduct({{$data->id}})">Edit Product</a>
                             <form method="POST" action="{{route('product.destroy',$data->id)}}">
                                 @csrf
@@ -96,9 +101,6 @@
                 </tbody>
             </table>
         </div>
-
-
-
 
         <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">

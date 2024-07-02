@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('facility_image')->nullable();
             $table->string('facility_name');
             $table->string('description');
             $table->unsignedBigInteger('product_id');

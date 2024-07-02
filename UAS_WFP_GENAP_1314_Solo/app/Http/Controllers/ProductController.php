@@ -103,6 +103,24 @@ class ProductController extends Controller
             return redirect()->route('product.index')->with('status',$msg);
         }
     }
+    public function uploadLogo(Request $request)
+    {
+        $product_id=$request->product_id;
+        $product=Product::find($product_id);
+        return view('product.formUploadLogo',compact('product'));
+    }
+
+    public function simpanLogo(Request $request)
+    {
+        $file=$request->file("file_logo");
+        $folder='logo/product';
+        $filename=time()."_".$file->getClientOriginalName();
+        $file->move($folder,$filename);
+        $hotel=Product::find($request->product_id);
+        $hotel->product_image=$filename;
+        $hotel->save();
+        return redirect()->route('product.index')->with('status','photo terupload');
+    }
 
     public function getEditFormProduct(Request $request)
     {

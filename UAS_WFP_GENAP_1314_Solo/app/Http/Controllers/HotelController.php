@@ -106,6 +106,24 @@ class HotelController extends Controller
               return redirect()->route('hotel.index')->with('status',$msg);
         }
     }
+    public function uploadLogo(Request $request)
+    {
+        $hotel_id=$request->hotel_id;
+        $hotel=Hotel::find($hotel_id);
+        return view('hotel.formUploadLogo',compact('hotel'));
+    }
+
+    public function simpanLogo(Request $request)
+    {
+        $file=$request->file("file_logo");
+        $folder='logo/hotel';
+        $filename=time()."_".$file->getClientOriginalName();
+        $file->move($folder,$filename);
+        $hotel=Hotel::find($request->hotel_id);
+        $hotel->hotel_image=$filename;
+        $hotel->save();
+        return redirect()->route('hotel.index')->with('status','photo terupload');
+    }
 
     public function getEditFormHotel(Request $request)
     {

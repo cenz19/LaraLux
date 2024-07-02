@@ -66,6 +66,7 @@
                 <thead>
                 <tr>
                     <th>id</th>
+                    <th>hotel image</th>
                     <th>hotel name</th>
                     <th>address</th>
                     <th>phone number</th>
@@ -82,6 +83,9 @@
                 @foreach($hotel_index_controller as $data)
                     <tr>
                     <td>{{$data->id}}</td>
+                    <td>
+                        <img height='100px' width='100px' alt="image of {{$data->hotel_name}}" src="{{ asset('/logo/hotel/'.$data->hotel_image)}}"/><br>
+                    </td>
                     <td>{{$data->hotel_name}}</td>
                     <td>{{$data->address}}</td>
                     <td>{{$data->phone_number}}</td>
@@ -90,11 +94,12 @@
                     <td>{{$data->created_at}}</td>
                     <td>{{$data->updated_at}}</td>
                     <td>
-                        <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormHotel({{$data->id}})">Edit Hotel</a>
+                        <a href="{{ url('hotel/uploadLogo/'.$data->id) }}" class="btn btn-success">upload Hotel Picture</a>
+                        <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormHotel({{$data->id}})">Edit this row</a>
                         <form method="POST" action="{{route('hotel.destroy',$data->id)}}">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->hotel_name}} ? ');">
+                            <input type="submit" value="delete this row" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->hotel_name}} ? ');">
                         </form>
                     </td>
                     </tr>
@@ -102,9 +107,6 @@
                 </tbody>
             </table>
         </div>
-
-
-
 
         <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
@@ -159,8 +161,6 @@
                          </div>
                  </div>
         </div>
-
-
     </div>
 @endsection
 @section('javascript')

@@ -98,6 +98,24 @@ class FacilityController extends Controller
             return redirect()->route('facility.index')->with('status',$msg);
         }
     }
+    public function uploadLogo(Request $request)
+    {
+        $facility_id=$request->facility_id;
+        $facility=Facility::find($facility_id);
+        return view('facility.formUploadLogo',compact('facility'));
+    }
+    public function simpanLogo(Request $request)
+    {
+        $file=$request->file("file_logo");
+        $folder='logo/facility';
+        $filename=time()."_".$file->getClientOriginalName();
+        $file->move($folder,$filename);
+        $hotel=Facility::find($request->facility_id);
+        $hotel->facility_image=$filename;
+        $hotel->save();
+        return redirect()->route('facility.index')->with('status','photo terupload');
+    }
+
     public function getEditFormFacility(Request $request){
 
         $id = $request->id;

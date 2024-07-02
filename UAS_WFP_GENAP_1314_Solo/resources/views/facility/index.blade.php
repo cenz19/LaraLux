@@ -65,6 +65,7 @@
                 <thead>
                 <tr>
                     <th>id</th>
+                    <th>facility image</th>
                     <th>facility name</th>
                     <th>description</th>
                     <th>Owned by product</th>
@@ -77,13 +78,17 @@
                 @foreach($facility_index_controller as $data)
                     <tr>
                         <td>{{$data->id}}</td>
+                        <td>
+                            <img height='100px' width='100px' alt="image of {{$data->facility_name}}" src="{{ asset('/logo/facility/'.$data->facility_image)}}"/><br>
+                        </td>
                         <td>{{$data->facility_name}}</td>
                         <td>{{$data->description}}</td>
                         <td>{{$data->product->product_name}}</td>
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->updated_at}}</td>
                         <td>
-                            <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormFacility({{$data->id}})">Edit Hotel</a>
+                            <a href="{{ url('facility/uploadLogo/'.$data->id) }}" class="btn btn-success">upload Facility Picture</a>
+                            <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormFacility({{$data->id}})">Edit Facility</a>
                             <form method="POST" action="{{route('facility.destroy',$data->id)}}">
                                 @csrf
                                 @method('DELETE')

@@ -67,7 +67,7 @@
                     <th>product image</th>
                     <th>product name</th>
                     <th>product type</th>
-                    <th>price ($)</th>
+                    <th>price (Rp)</th>
                     <th>Reserve</th>
                 </tr>
                 </thead>
@@ -87,7 +87,12 @@
                 @endforeach
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-primary">Proceed to payment</button>
+                <h4>Please select your payment method</h4>
+                <input type="radio" id="cash" name="payment" value="cash" checked>
+                <label for="cash">Cash</label><br>
+                <input type="radio" id="point" name="payment" value="point">
+                <label for="point">Point (your point right now {{$points}} points) </label><br>
+            <button type="submit" class="btn btn-primary">Pay the product(s)</button>
             </form>
         </div>
     </div>

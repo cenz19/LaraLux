@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -62,11 +62,18 @@ class TransactionController extends Controller
     {
         //
     }
-
     public function getProductByHotelId(Request $request)
     {
-        $hotel_id=$request->hotel_id;
-        $products_by_hotel_id = Product::where('hotel_id', $hotel_id)->get();
+        $hotel_id = $request->hotel_id;
+
+        // Retrieve all products where hotel_id matches the given value using query builder
+        $products_by_hotel_id = DB::table('products')
+            ->join('product_types', 'products.product_type_id', '=', 'product_types.id')
+            ->join('hotels', 'products.hotel_id', '=', 'hotels.id')
+            ->where('products.hotel_id', $hotel_id)
+            ->select('products.*', 'product_types.product_type_name', 'hotels.hotel_name')
+            ->get();
+
         return view('transaction.index', compact('products_by_hotel_id'));
     }
 }

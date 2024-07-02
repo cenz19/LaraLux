@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -22,5 +23,9 @@ class Product extends Model
     public function product_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(ProductType::class, 'product_type_id');
+    }
+
+    public function user(): BelongsToMany{
+        return $this->belongsToMany(User::class, 'transactions','product_id', 'user_id')->withPivot('quantity', 'total');
     }
 }

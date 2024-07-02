@@ -75,6 +75,7 @@
                     <th>created_at</th>
                     <th>updated_at</th>
                     <th>Action</th>
+                    <th>Reservation</th>
 
 {{--                    <th>Action</th>--}}
                 </tr>
@@ -102,6 +103,7 @@
                             <input type="submit" value="delete this row" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->hotel_name}} ? ');">
                         </form>
                     </td>
+                    <td><a href="{{url("hotel/transaction/".$data->id)}}" class="btn-success">Reserve this hotel</a></td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->String('role');
-            $table->integer('reservation');
+            $table->integer('poin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

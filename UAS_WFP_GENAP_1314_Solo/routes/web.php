@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
 /*
@@ -47,3 +48,4 @@ Route::get('facility/uploadLogo/{facility_id}', [FacilityController::class, 'upl
 Route::post('facility/simpanLogo', [FacilityController::class, 'simpanLogo']);
 
 //TRANSACTION
+Route::get('hotel/transaction/{hotel_id}', [TransactionController::class, 'getProductByHotelId']);

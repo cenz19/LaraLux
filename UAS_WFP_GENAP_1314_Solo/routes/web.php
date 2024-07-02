@@ -48,4 +48,6 @@ Route::get('facility/uploadLogo/{facility_id}', [FacilityController::class, 'upl
 Route::post('facility/simpanLogo', [FacilityController::class, 'simpanLogo']);
 
 //TRANSACTION
-Route::get('hotel/transaction/{hotel_id}', [TransactionController::class, 'getProductByHotelId']);
+
+//CUSTOM
+Route::get('hotel/transaction/{hotel_id}', [ProductController::class, 'getProductByHotelId']);

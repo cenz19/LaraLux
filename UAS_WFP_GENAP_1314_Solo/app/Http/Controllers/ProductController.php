@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hotel;
 use App\Models\Product;
 use App\Models\ProductType;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -156,7 +157,8 @@ class ProductController extends Controller
     public function getProductByHotelId(Request $request)
     {
         $hotel_id = $request->hotel_id;
-
+        $user = DB::table('users')->where('id', 1)->first();
+        $points = $user->points;
         // Retrieve all products where hotel_id matches the given value using query builder
         $products_by_hotel_id = DB::table('products')
             ->join('product_types', 'products.product_type_id', '=', 'product_types.id')
@@ -165,6 +167,7 @@ class ProductController extends Controller
             ->select('products.*', 'product_types.product_type_name', 'hotels.hotel_name')
             ->get();
 
-        return view('transaction.index', compact('products_by_hotel_id'));
+        return view('transaction.index', compact('products_by_hotel_id', 'points'));
+
     }
 }

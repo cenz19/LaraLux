@@ -48,6 +48,8 @@ Route::get('facility/uploadLogo/{facility_id}', [FacilityController::class, 'upl
 Route::post('facility/simpanLogo', [FacilityController::class, 'simpanLogo']);
 
 //TRANSACTION
+Route::post('transaction/checkout', [TransactionController::class, 'checkout'])->name('transaction.checkout');
 
-//CUSTOM
+//CUSTOM QUERY
+//1. get all product that owned by the selected hotel by using its hotel id
 Route::get('hotel/transaction/{hotel_id}', [ProductController::class, 'getProductByHotelId']);

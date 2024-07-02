@@ -58,6 +58,8 @@
         <div class="container">
             <h2>Product owned by {{$products_by_hotel_id[0]->hotel_name}}</h2>
             <p>Ini adalah tabel Transaksi</p>
+            <form action="{{route('transaction.checkout')}}" method="POST">
+                @csrf
             <table class="table">
                 <thead>
                 <tr>
@@ -66,7 +68,7 @@
                     <th>product name</th>
                     <th>product type</th>
                     <th>price ($)</th>
-                    <th>Buy</th>
+                    <th>Reserve</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,12 +81,14 @@
                         <td>{{$data->product_name}}</td>
                         <td>{{$data->product_type_name}}</td>
                         <td>{{$data->price}}</td>
-                        <td><input type="number" min="0" step="1" class="form-control" id="Quantity" name='form_quantity{{$data->id}}'
+                        <td><input value="0" type="number" min="0" step="1" class="form-control" id="Quantity" name='form_quantity{{$data->id}}'
                                    aria-describedby="nameHelp" placeholder="Enter your quantity"></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
 @endsection

@@ -136,6 +136,17 @@ class ProductController extends Controller
         ),200);
     }
 
+    public function showProductsByTransactions()
+    {
+        $hotels = Hotel::with(['products' => function($query) {
+                $query->withCount('transactions')
+                      ->orderBy('transactions_count', 'desc');
+            }])
+            ->get();
+
+        return view('products.report', compact('hotels'));
+    }
+
 
     public function product_type_controller_function(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {

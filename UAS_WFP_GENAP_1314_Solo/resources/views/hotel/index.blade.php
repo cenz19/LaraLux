@@ -60,6 +60,7 @@
         <div class="container">
             <h2>Hotel Table</h2>
             <p>Ini adalah tabel Hotel</p>
+            <a href="{{route('hotel.report')}}" data-toggle="modal" class="btn btn-info">Top 3</a>
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Hotel</a>
             <a href="{{route('hoteltype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
             <table class="table">

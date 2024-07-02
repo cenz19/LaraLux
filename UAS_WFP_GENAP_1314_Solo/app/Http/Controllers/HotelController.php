@@ -136,6 +136,15 @@ class HotelController extends Controller
         ),200);
     }
 
+    public function reportTop()
+    {
+        $hotelTopSales = Hotel::withCount('transactions')
+                ->orderBy('transactions_count', 'desc')
+                ->get();
+
+        return view('hotel.report', compact('hotelTopSales'));
+    }
+
 
 
 

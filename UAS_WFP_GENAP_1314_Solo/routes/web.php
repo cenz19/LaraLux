@@ -19,24 +19,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//$hotel_type_controller = HotelType::all();
 
+//HOTEL
 Route::resource('hotel', HotelController::class);
 Route::post('hotel/edit', [HotelController::class, 'getEditFormHotel'])->name('hotel.getEditFormHotel');
 
-
-
-
-
+//HOTEL TYPE
 Route::get('hoteltype', [HotelController::class, 'hotel_type_controller_function'])->name('hoteltype.index');
 Route::post('hotel/type/create', [HotelController::class, 'store_type'])->name('hoteltype.store');
 
-
-
+//PRODUCT
 Route::resource('product', ProductController::class);
+Route::post('product/edit', [ProductController::class, 'getEditFormProduct'])->name('product.getEditFormProduct');
 
+//PRODUCT TYPE
 Route::get('producttype', [ProductController::class,  'product_type_controller_function'])->name('producttype.index');
 Route::post('product/type/create', [ProductController::class, 'store_type'])->name('producttype.store');
 
+//FACILITY
 Route::resource('facility', FacilityController::class);
-
+Route::post('facility/edit', [FacilityController::class, 'getEditFormFacility'])->name('facility.getEditFormFacility');
+//TRANSACTION

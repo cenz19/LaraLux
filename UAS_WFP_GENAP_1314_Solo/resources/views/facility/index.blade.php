@@ -51,6 +51,12 @@
             </div>
         </div>
 
+        @if (session('status'))
+            <div class="alert alert-info">
+                {!! session('status') !!}
+            </div>
+        @endif
+
         <div class="container">
             <h2>Facility Table</h2>
             <p>Ini adalah tabel Facility</p>
@@ -64,7 +70,7 @@
                     <th>Owned by product</th>
                     <th>created_at</th>
                     <th>updated_at</th>
-                    {{--                    <th>Action</th>--}}
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,13 +82,19 @@
                         <td>{{$data->product->product_name}}</td>
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->updated_at}}</td>
+                        <td>
+                            <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormFacility({{$data->id}})">Edit Hotel</a>
+                            <form method="POST" action="{{route('facility.destroy',$data->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->facility_name}} ? ');">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-
-
 
 
         <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
@@ -121,7 +133,35 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modalEditA" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog modal-wide">
+                <div class="modal-content" >
+                    <div class="modal-body" id="modalContent">
+                        {{-- You can put animated loading image here... --}}
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+@endsection
+@section('javascript')
+    <script>
+        function getEditFormFacility(facility_id)
+        {
+            $.ajax({
+                type:'POST',
+                url:'{{route("facility.getEditFormFacility")}}',
+                data: {
+                    '_token' : '<?php echo csrf_token() ?>',
+                    'id': facility_id
+                },
+                success: function(data){
+                    $('#modalContent').html(data.msg)
+                }
+            });
+        }
+    </script>
+
 @endsection
 

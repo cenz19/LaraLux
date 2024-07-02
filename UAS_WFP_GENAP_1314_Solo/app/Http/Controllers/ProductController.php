@@ -72,18 +72,50 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product_name = $request->form_product_name;
+        $product_type_id = $request->form_product_type_id;
+        $price = $request->form_price;
+        $hotel_id = $request->form_hotel_id;
+
+        $updatedData = $product;
+        $updatedData->product_name = $product_name;
+        $updatedData->product_type_id = $product_type_id;
+        $updatedData->price = $price;
+        $updatedData->hotel_id = $hotel_id;
+        $updatedData->update();
+        return redirect()->route('product.index')->with('status','Horray ! Your data is successfully updated !');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
         //
+        try {
+            $deletedData = $product;
+            $deletedData->delete();
+            return redirect()->route('product.index')->with('status','Horray ! Your data is successfully deleted !');
+        } catch (\PDOException $ex) {
+            $msg = "Failed to delete data ! Make sure there is no related data before deleting it<br>error message: ".$ex->getMessage();
+            return redirect()->route('product.index')->with('status',$msg);
+        }
     }
+
+    public function getEditFormProduct(Request $request)
+    {
+        $id = $request->id;
+        $data = Product::find($id);
+        $product_type_controller = ProductType::all();
+        $product_hotel_id_controller = Hotel::all();
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('product.getEditFormProduct', compact('data','product_type_controller', 'product_hotel_id_controller'))->render()
+        ),200);
+    }
+
 
     public function product_type_controller_function(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {

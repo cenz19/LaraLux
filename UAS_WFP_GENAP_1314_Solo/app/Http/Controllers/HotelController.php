@@ -102,7 +102,7 @@ class HotelController extends Controller
               $deletedData->delete();
               return redirect()->route('hotel.index')->with('status','Horray ! Your data is successfully deleted !');
         } catch (\PDOException $ex) {
-              $msg = "Failed to delete data ! Make sure there is no related data before deleting it";
+              $msg = "Failed to delete data ! Make sure there is no related data before deleting it<br>error message: ".$ex->getMessage();
               return redirect()->route('hotel.index')->with('status',$msg);
         }
     }
@@ -116,7 +116,7 @@ class HotelController extends Controller
             'status' => 'oke',
             'msg' => view('hotel.getEditFormHotel', compact('data','hotel_type_controller'))->render()
         ),200);
-}
+    }
 
 
 

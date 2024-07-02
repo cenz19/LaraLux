@@ -50,7 +50,11 @@
                 </div>
             </div>
         </div>
-
+        @if (session('status'))
+            <div class="alert alert-info">
+                {!! session('status') !!}
+            </div>
+        @endif
         <div class="container">
             <h2>Product Table</h2>
             <p>Ini adalah tabel Product</p>
@@ -66,7 +70,7 @@
                     <th>Owned By</th>
                     <th>created_at</th>
                     <th>updated_at</th>
-                    {{--                    <th>Action</th>--}}
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,6 +83,14 @@
                         <td>{{$data->hotel->hotel_name}}</td>
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->updated_at}}</td>
+                        <td>
+                            <a href="#editModal" class="btn btn-warning" data-toggle="modal" onclick="getEditFormProduct({{$data->id}})">Edit Product</a>
+                            <form method="POST" action="{{route('product.destroy',$data->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->product_name}} ? ');">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -131,7 +143,34 @@
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="editModal" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog modal-wide">
+                <div class="modal-content" >
+                    <div class="modal-body" id="modalContent">
+                        {{-- You can put animated loading image here... --}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+@endsection
+@section('javascript')
+    <script>
+        function getEditFormProduct(product_id)
+        {
+            $.ajax({
+                type:'POST',
+                url:'{{route("product.getEditFormProduct")}}',
+                data: {
+                    '_token' : '<?php echo csrf_token() ?>',
+                    'id': product_id
+                },
+                success: function(data){
+                    $('#modalContent').html(data.msg)
+                }
+            });
+        }
+    </script>
+
 @endsection
 

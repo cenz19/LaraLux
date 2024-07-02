@@ -68,16 +68,44 @@ class FacilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Facility $facility)
     {
         //
+        $facility_name = $request->form_facility_name;
+        $description = $request->form_description;
+        $product_id = $request->form_product_id;
+
+        $updatedData = $facility;
+        $updatedData->facility_name = $facility_name;
+        $updatedData->description = $description;
+        $updatedData->product_id = $product_id;
+        $updatedData->update();
+        return redirect()->route('facility.index')->with('status','Horray ! Your data is successfully updated !');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Facility $facility)
     {
         //
+        try {
+            $deletedData = $facility;
+            $deletedData->delete();
+            return redirect()->route('facility.index')->with('status','Horray ! Your data is successfully deleted !');
+        } catch (\PDOException $ex) {
+            $msg = "Failed to delete data ! Make sure there is no related data before deleting it<br>error message: ".$ex->getMessage();
+            return redirect()->route('facility.index')->with('status',$msg);
+        }
+    }
+    public function getEditFormFacility(Request $request){
+
+        $id = $request->id;
+        $data = Facility::find($id);
+        $product_id = Product::all();
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('facility.getEditFormFacility', compact('data','product_id'))->render()
+        ),200);
     }
 }

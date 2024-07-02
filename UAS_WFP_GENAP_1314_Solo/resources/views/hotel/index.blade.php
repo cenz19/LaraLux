@@ -53,7 +53,7 @@
 
         @if (session('status'))
             <div class="alert alert-info">
-                {{ session('status') }}
+                {!! session('status') !!}
             </div>
         @endif
 
@@ -96,7 +96,6 @@
                             @method('DELETE')
                             <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->hotel_name}} ? ');">
                         </form>
-
                     </td>
                     </tr>
                 @endforeach

@@ -6,6 +6,7 @@ use App\Models\Hotel;
 use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -161,5 +162,20 @@ class ProductController extends Controller
         $data->updated_at = now();
         $data->save();
         return redirect()->route('producttype.index')->with('status','Hooray ! Data successfully added');
+    }
+
+    public function getProductByHotelId(Request $request)
+    {
+        $hotel_id = $request->hotel_id;
+
+        // Retrieve all products where hotel_id matches the given value using query builder
+        $products_by_hotel_id = DB::table('products')
+            ->join('product_types', 'products.product_type_id', '=', 'product_types.id')
+            ->join('hotels', 'products.hotel_id', '=', 'hotels.id')
+            ->where('products.hotel_id', $hotel_id)
+            ->select('products.*', 'product_types.product_type_name', 'hotels.hotel_name')
+            ->get();
+
+        return view('transaction.index', compact('products_by_hotel_id'));
     }
 }

@@ -43,7 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function products(): BelongsToMany{
-        return $this->belongsToMany(Product::class, 'transactions','user_id', 'product_id')->withPivot('quantity', 'total');
+    public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transaction::class, 'user_id','id');
     }
 }

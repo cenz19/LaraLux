@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Orangutan Room',
                 'product_type_id' => 1,
-                'price' => 100.00,
+                'price' => 150000,  // 150,000 rupiah
                 'hotel_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Sheep Room',
                 'product_type_id' => 2,
-                'price' => 150.00,
+                'price' => 200000,  // 200,000 rupiah
                 'hotel_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Jasmine Room',
                 'product_type_id' => 4,
-                'price' => 300.00,
+                'price' => 300000,  // 300,000 rupiah
                 'hotel_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Lion Room',
                 'product_type_id' => 5,
-                'price' => 120.00,
+                'price' => 150000,  // 150,000 rupiah
                 'hotel_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Zebra Room',
                 'product_type_id' => 6,
-                'price' => 170.00,
+                'price' => 200000,  // 200,000 rupiah
                 'hotel_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Giraffe Room',
                 'product_type_id' => 7,
-                'price' => 250.00,
+                'price' => 250000,  // 250,000 rupiah
                 'hotel_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Snail Room',
                 'product_type_id' => 3,
-                'price' => 180.00,
+                'price' => 180000,  // 180,000 rupiah
                 'hotel_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -75,7 +75,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Rhinoceros Room',
                 'product_type_id' => 1,
-                'price' => 100.00,
+                'price' => 150000,  // 150,000 rupiah
                 'hotel_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Bull Room',
                 'product_type_id' => 4,
-                'price' => 280.00,
+                'price' => 280000,  // 280,000 rupiah
                 'hotel_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -92,7 +92,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Butterfly Room',
                 'product_type_id' => 2,
-                'price' => 220.00,
+                'price' => 220000,  // 220,000 rupiah
                 'hotel_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -100,7 +100,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Deer Room',
                 'product_type_id' => 7,
-                'price' => 300.00,
+                'price' => 300000,  // 300,000 rupiah
                 'hotel_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -108,7 +108,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Hippo Room',
                 'product_type_id' => 5,
-                'price' => 130.00,
+                'price' => 130000,  // 130,000 rupiah
                 'hotel_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Scorpion Room',
                 'product_type_id' => 1,
-                'price' => 80.00,
+                'price' => 120000,  // 120,000 rupiah
                 'hotel_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -125,7 +125,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Shark Room',
                 'product_type_id' => 6,
-                'price' => 120.00,
+                'price' => 150000,  // 150,000 rupiah
                 'hotel_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -133,7 +133,7 @@ class ProductSeeder extends Seeder
             [
                 'product_name' => 'Monkey Room',
                 'product_type_id' => 3,
-                'price' => 150.00,
+                'price' => 180000,  // 180,000 rupiah
                 'hotel_id' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),

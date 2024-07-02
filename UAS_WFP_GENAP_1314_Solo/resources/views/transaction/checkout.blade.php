@@ -60,36 +60,37 @@
             <p>Ini adalah tabel Transaksi</p>
             <form action="{{route('transaction.checkout')}}" method="POST">
                 @csrf
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>product image</th>
-                    <th>product name</th>
-                    <th>product type</th>
-                    <th>price ($)</th>
-                    <th>Reserve</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($products_by_hotel_id as $data)
+                <table class="table">
+                    <thead>
                     <tr>
-                        <td>{{$data->id}}</td>
-                        <td>
-                            <img height='100px' width='100px' alt="image of {{$data->product_name}}" src="{{ asset('/logo/product/'.$data->product_image)}}"/><br>
-                        </td>
-                        <td>{{$data->product_name}}</td>
-                        <td>{{$data->product_type_name}}</td>
-                        <td>{{$data->price}}</td>
-                        <td><input value="0" type="number" min="0" step="1" class="form-control" id="Quantity" name='form_quantity{{$data->id}}'
-                                   aria-describedby="nameHelp" placeholder="Enter your quantity"></td>
+                        <th>id</th>
+                        <th>product image</th>
+                        <th>product name</th>
+                        <th>product type</th>
+                        <th>price ($)</th>
+                        <th>Reserve</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary">Proceed to payment</button>
+                    </thead>
+                    <tbody>
+                    @foreach($products_by_hotel_id as $data)
+                        <tr>
+                            <td>{{$data->id}}</td>
+                            <td>
+                                <img height='100px' width='100px' alt="image of {{$data->product_name}}" src="{{ asset('/logo/product/'.$data->product_image)}}"/><br>
+                            </td>
+                            <td>{{$data->product_name}}</td>
+                            <td>{{$data->product_type_name}}</td>
+                            <td>{{$data->price}}</td>
+                            <td><input value="0" type="number" min="0" step="1" class="form-control" id="Quantity" name='form_quantity{{$data->id}}'
+                                       aria-describedby="nameHelp" placeholder="Enter your quantity"></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 @endsection
+
 

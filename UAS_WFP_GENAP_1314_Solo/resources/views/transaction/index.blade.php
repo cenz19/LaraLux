@@ -87,11 +87,12 @@
                 @endforeach
                 </tbody>
             </table>
-                <h4>Please select your payment method</h4>
-                <input type="radio" id="cash" name="payment" value="cash" checked>
-                <label for="cash">Cash</label><br>
-                <input type="radio" id="point" name="payment" value="point">
-                <label for="point">Point (your point right now {{$points}} points) </label><br>
+                <label for="payment">Please select your payment method</label>
+                <select name="payment" id="payment" class="form-control">
+                        <option value="cash">cash</option>
+                        <option value="point">point (your point right now {{$points}} points)</option>
+                </select>
+                <br>
             <button type="submit" class="btn btn-primary">Pay the product(s)</button>
             </form>
         </div>

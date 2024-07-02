@@ -42,7 +42,6 @@
                     <a href="#" onclick="showInfo()">
                         <i class="icon-bulb"></i></a>
                 </li>
-
             </ul>
             <div class="page-toolbar">
                 <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height btn-primary" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
@@ -60,7 +59,7 @@
         <div class="container">
             <h2>Hotel Table</h2>
             <p>Ini adalah tabel Hotel</p>
-            <a href="{{route('hotel.report')}}" data-toggle="modal" class="btn btn-info">Top 3</a>
+{{--            <a href="{{route('hotel.report')}}" data-toggle="modal" class="btn btn-info">Top 3</a>--}}
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Hotel</a>
             <a href="{{route('hoteltype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
             <table class="table">
@@ -77,8 +76,6 @@
                     <th>updated_at</th>
                     <th>Action</th>
                     <th>Reservation</th>
-
-{{--                    <th>Action</th>--}}
                 </tr>
                 </thead>
                 <tbody>

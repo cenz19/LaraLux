@@ -66,9 +66,15 @@ class TransactionController extends Controller
     public function checkout(Request $request)
     {
         $data = $request->all();
+        $payment = $data['payment'];
         $totalPoints = 0;
         $totalPrice = 0;
+        $view = '';
+        $status_text = '';
         // Start a transaction to ensure data consistency
+        $user = DB::table('users')->where('id', 1)->first();
+        $points = $user->points;
+
         DB::beginTransaction();
         try {
             // Insert a transaction record and get the transaction ID
@@ -89,18 +95,34 @@ class TransactionController extends Controller
                         $totalPoints += $this->calculatePoints($product, $quantity, $price);
 
                         // Save product transaction
-                        $this->insertProductTransaction($transaction_id, $product->id, $quantity, $price);
+                        if ($price > 0){
+                            $this->insertProductTransaction($transaction_id, $product->id, $quantity, $price);
+                        }
                     }
                 }
             }
             // Update the total price in the transaction record including tax
             $this->updateTransactionTotal($transaction_id, $totalPrice);
-            // Update user points (you need to adjust this part based on your actual table structure)
-            $this->updateUserPoints(1, $totalPoints); // Assuming user ID 1 for demonstration
-            // Commit the transaction
+            $totalPriceAfterTax = $totalPrice * 111 / 100;
+            if ($payment == 'point') {
+
+                if ($points * 100000 >= $totalPriceAfterTax && $totalPriceAfterTax >= 100000) {
+                    $this->deductUserPoints(1, floor($totalPriceAfterTax / 100000)); // Deduct points (implement this method)
+                    $status_text = 'Checkout successful! Your point has been deducted by ' . floor($totalPriceAfterTax / 100000) . ' points.';
+                } else {
+                    DB::rollback();
+                    return redirect()->back()->with('status', 'Checkout failed! Insufficient points or invalid transaction.');
+                }
+            } elseif ($payment == 'cash' && $totalPriceAfterTax > 0) {
+                $this->updateUserPoints(1, $totalPoints); // Assuming user ID 1 for demonstration
+                $status_text = 'Checkout successful! Your point has been added by ' . $totalPoints . ' points.';
+            } else {
+                DB::rollback();
+                return redirect()->back()->with('status', 'Invalid payment method.');
+            }
             DB::commit();
-            // Return a response or redirect as needed
-            return view('transaction.history')->with('status', 'Checkout successful! You earned ' . $totalPoints . ' points.');
+            return redirect()->back()->with('status', $status_text);
+//            return view($view)->with('status', $status_text);
         } catch (\Exception $e) {
             // Rollback the transaction if an error occurs
             DB::rollback();
@@ -108,7 +130,7 @@ class TransactionController extends Controller
         }
     }
 
-    private function insertTransaction()
+    private function insertTransaction(): int
     {
         // Insert a transaction record and return the transaction ID
         return DB::table('transactions')->insertGetId([
@@ -119,7 +141,7 @@ class TransactionController extends Controller
         ]);
     }
 
-    private function calculatePoints($product, $quantity, $price)
+    private function calculatePoints($product, $quantity, $price): float|int
     {
         // Calculate points based on product type
         if (in_array($product->product_type_id, [2, 3, 4])) { // Deluxe, Superior, Suite
@@ -129,7 +151,7 @@ class TransactionController extends Controller
         }
     }
 
-    private function insertProductTransaction($transaction_id, $product_id, $quantity, $price)
+    private function insertProductTransaction($transaction_id, $product_id, $quantity, $price): void
     {
         // Save product transaction
         DB::table('product_transactions')->insert([
@@ -142,7 +164,7 @@ class TransactionController extends Controller
         ]);
     }
 
-    private function updateTransactionTotal($transaction_id, $totalPrice)
+    private function updateTransactionTotal($transaction_id, $totalPrice): void
     {
         // Update the total price in the transaction record including tax
         DB::table('transactions')->where('id', $transaction_id)->update([
@@ -150,9 +172,15 @@ class TransactionController extends Controller
         ]);
     }
 
-    private function updateUserPoints($user_id, $totalPoints)
+    private function updateUserPoints($user_id, $totalPoints): void
     {
         // Update user points (you need to adjust this part based on your actual table structure)
         DB::table('users')->where('id', $user_id)->increment('points', $totalPoints);
+    }
+
+    private function deductUserPoints($user_id, $points): void
+    {
+        // Deduct user points (adjust based on your actual table structure and logic)
+        DB::table('users')->where('id', $user_id)->decrement('points', $points);
     }
 }

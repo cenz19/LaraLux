@@ -25,7 +25,7 @@
     </div>
     <div class="page-content">
         <h3 class="page-title">
-            Hotel
+            Product
         </h3>
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -35,7 +35,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a href="{{route('hotel.index')}}">Hotel</a>
+                    <a href="{{route('product.index')}}">Product</a>
                 </li>
                 <li >
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,52 +50,49 @@
                 </div>
             </div>
         </div>
-
         @if (session('status'))
             <div class="alert alert-info">
                 {!! session('status') !!}
             </div>
         @endif
-
         <div class="container">
-            <h2>Top 3 Hotel</h2>
-            <p>Ini adalah tabel 3 Hotel dengan total pembelian terbanyak</p>
+            <h2>Product Table</h2>
+            <p>Ini adalah tabel Product</p>
+            <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Product</a>
+            <a href="{{route('producttype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
             <table class="table">
                 <thead>
                 <tr>
                     <th>id</th>
-                    <th>hotel image</th>
-                    <th>hotel name</th>
-                    <th>address</th>
-                    <th>phone number</th>
-                    <th>email</th>
-                    <th>type</th>
+                    <th>product image</th>
+                    <th>product name</th>
+                    <th>product type</th>
+                    <th>price ($)</th>
+                    <th>Owned By</th>
                     <th>created_at</th>
                     <th>updated_at</th>
                     <th>total transaction</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($hotelTopSales as $data)
+                @foreach($product_index_controller as $data)
                     <tr>
-                    <td>{{$data->id}}</td>
-                    <td>
-                        <img height='100px' width='100px' alt="image of {{$data->hotel_name}}" src="{{ asset('/logo/hotel/'.$data->hotel_image)}}"/><br>
-                    </td>
-                    <td>{{$data->hotel_name}}</td>
-                    <td>{{$data->address}}</td>
-                    <td>{{$data->phone_number}}</td>
-                    <td>{{$data->email}}</td>
-                    <td>{{$data->hotel_type->hotel_type_name}}</td>
-                    <td>{{$data->created_at}}</td>
-                    <td>{{$data->updated_at}}</td>
-                    <td>{{$data->transactions_count}}</td>
+                        <td>{{$data->id}}</td>
+                        <td>
+                            <img height='100px' width='100px' alt="image of {{$data->product_name}}" src="{{ asset('/logo/product/'.$data->product_image)}}"/><br>
+                        </td>
+                        <td>{{$data->product_name}}</td>
+                        <td>{{$data->product_type->product_type_name}}</td>
+                        <td>{{$data->price}}</td>
+                        <td>{{$data->hotel->hotel_name}}</td>
+                        <td>{{$data->created_at}}</td>
+                        <td>{{$data->updated_at}}</td>
+                        <td>{{$data->transactions_count}}</td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
 @endsection
 

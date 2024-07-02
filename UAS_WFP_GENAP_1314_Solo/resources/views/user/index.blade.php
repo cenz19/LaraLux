@@ -35,7 +35,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a href="{{route('hotel.index')}}">Hotel</a>
+                    <a href="{{route('user.index')}}">User</a>
                 </li>
                 <li >
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,38 +58,22 @@
         @endif
 
         <div class="container">
-            <h2>Top 3 Hotel</h2>
-            <p>Ini adalah tabel 3 Hotel dengan total pembelian terbanyak</p>
+            <h2>User</h2>
+            <p>Ini adalah tabel user</p>
             <table class="table">
                 <thead>
                 <tr>
                     <th>id</th>
-                    <th>hotel image</th>
-                    <th>hotel name</th>
-                    <th>address</th>
-                    <th>phone number</th>
+                    <th>name</th>
                     <th>email</th>
-                    <th>type</th>
-                    <th>created_at</th>
-                    <th>updated_at</th>
-                    <th>total transaction</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($hotelTopSales as $data)
+                @foreach($user_controller as $data)
                     <tr>
                     <td>{{$data->id}}</td>
-                    <td>
-                        <img height='100px' width='100px' alt="image of {{$data->hotel_name}}" src="{{ asset('/logo/hotel/'.$data->hotel_image)}}"/><br>
-                    </td>
-                    <td>{{$data->hotel_name}}</td>
-                    <td>{{$data->address}}</td>
-                    <td>{{$data->phone_number}}</td>
+                    <td>{{$data->name}}</td>
                     <td>{{$data->email}}</td>
-                    <td>{{$data->hotel_type->hotel_type_name}}</td>
-                    <td>{{$data->created_at}}</td>
-                    <td>{{$data->updated_at}}</td>
-                    <td>{{$data->transactions_count}}</td>
                     </tr>
                 @endforeach
                 </tbody>

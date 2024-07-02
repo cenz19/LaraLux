@@ -50,5 +50,10 @@ Route::post('facility/simpanLogo', [FacilityController::class, 'simpanLogo']);
 //TRANSACTION
 Route::get('hotel/transaction/{hotel_id}', [TransactionController::class, 'getProductByHotelId']);
 
+//USER
+Route::resource('user', UserController::class);
+
 //REPORT
-Route::resource('hotel/report', [HotelController::class, 'hotelTopSales']);
+Route::get('hotel/report', [HotelController::class, 'reportTop']);
+Route::get('user/report', [UserController::class, 'topUser']);
+Route::get('products/report', [ProductController::class, 'showProductsByTransactions']);

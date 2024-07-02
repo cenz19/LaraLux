@@ -138,9 +138,16 @@ class HotelController extends Controller
 
     public function reportTop()
     {
-        $hotelTopSales = Hotel::withCount('transactions')
-                ->orderBy('transactions_count', 'desc')
-                ->get();
+        $hotelTopSales = Hotel::with(['products.transactions'])
+                    ->get()
+                    ->map(function ($hotel) {
+                        $hotel->transaction_count = $hotel->products->sum(function ($product) {
+                            return $product->transactions->count();
+                        });
+                        return $hotel;
+                    })
+                    ->sortByDesc('transaction_count')
+                    ->take(3);
 
         return view('hotel.report', compact('hotelTopSales'));
     }

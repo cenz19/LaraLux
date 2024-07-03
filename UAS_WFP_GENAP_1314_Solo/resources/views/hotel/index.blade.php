@@ -60,8 +60,10 @@
             <h2>Hotel Table</h2>
             <p>Ini adalah tabel Hotel</p>
 {{--            <a href="{{route('hotel.report')}}" data-toggle="modal" class="btn btn-info">Top 3</a>--}}
+            @canany(['owner', 'staff'])
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Hotel</a>
             <a href="{{route('hoteltype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
+            @endcanany
             <table class="table">
                 <thead>
                 <tr>
@@ -74,8 +76,12 @@
                     <th>type</th>
                     <th>created_at</th>
                     <th>updated_at</th>
+                    @canany(['owner', 'staff'])
                     <th>Action</th>
+                    @endcanany
+                    @canany(['pembeli'])
                     <th>Reservation</th>
+                    @endcanany
                 </tr>
                 </thead>
                 <tbody>
@@ -92,6 +98,7 @@
                     <td>{{$data->hotel_type->hotel_type_name}}</td>
                     <td>{{$data->created_at}}</td>
                     <td>{{$data->updated_at}}</td>
+                        @canany(['owner', 'staff'])
                     <td>
                         <a href="{{ url('hotel/uploadLogo/'.$data->id) }}" class="btn btn-success">upload Hotel Picture</a>
                         <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormHotel({{$data->id}})">Edit this row</a>
@@ -101,7 +108,10 @@
                             <input type="submit" value="delete this row" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->hotel_name}} ? ');">
                         </form>
                     </td>
+                        @endcanany
+                        @canany(['pembeli'])
                     <td><a href="{{url("hotel/transaction/".$data->id)}}" class="btn-success btn">Reserve this hotel</a></td>
+                        @endcanany
                     </tr>
                 @endforeach
                 </tbody>

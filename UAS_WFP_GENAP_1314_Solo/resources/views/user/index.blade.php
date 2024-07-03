@@ -69,7 +69,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($user_controller as $data)
+                @foreach($user_index_controller as $data)
                     <tr>
                     <td>{{$data->id}}</td>
                     <td>{{$data->name}}</td>

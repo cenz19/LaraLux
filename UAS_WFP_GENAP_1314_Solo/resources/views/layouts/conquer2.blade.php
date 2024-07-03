@@ -523,7 +523,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <li class="start active ">
                         <a href={{ route('user.index') }}>
-                            <i class="icon-magic-wand"></i>
+                            <i class="icon-user"></i>
                             <span class="title">Users</span>
                             <span class="selected"></span>
                         </a>

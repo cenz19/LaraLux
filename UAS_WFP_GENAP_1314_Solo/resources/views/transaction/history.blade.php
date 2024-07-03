@@ -1,31 +1,8 @@
 @extends("layouts.conquer2")
 @section('content')
-    <div class="modal fade" id="disclaimer" tabindex="-1" role="basic" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">DISCLAIMER</h4>
-                </div>
-                <div class="modal-body">
-                    Pictures shown are for illustration purpose only. Actual product may vary due to product enhancement.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="basic" aria-hidden="true">
-        <div class="modal-dialog modal-wide">
-            <div class="modal-content" id="showproducts">
-                <!--loading animated gif can put here-->
-            </div>
-        </div>
-    </div>
     <div class="page-content">
         <h3 class="page-title">
-            Product
+            Purchase History
         </h3>
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -35,20 +12,14 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a href="{{route('product.index')}}">Product</a>
+                    <a href="{{route('transaction.history')}}">Transaction History</a>
                 </li>
-                <li >
+                <li>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" onclick="showInfo()">
                         <i class="icon-bulb"></i></a>
                 </li>
-
             </ul>
-            <div class="page-toolbar">
-                <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height btn-primary" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
-                    <i class="icon-calendar"></i>&nbsp; <span class="thin uppercase visible-lg-inline-block"></span>&nbsp; <i class="fa fa-angle-down"></i>
-                </div>
-            </div>
         </div>
         @if (session('status'))
             <div class="alert alert-info">
@@ -56,46 +27,33 @@
             </div>
         @endif
         <div class="container">
-            <h2>Product Table</h2>
-            <p>Ini adalah tabel Product</p>
-            <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Product</a>
-            <a href="{{route('producttype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
+            <h2>Purchases History</h2>
+            <p>This is your purchase history</p>
+            <p style="color: green"><strong> (your point right now {{$points}} points) </strong></p>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>product image</th>
-                    <th>product name</th>
-                    <th>product type</th>
-                    <th>price ($)</th>
-                    <th>Owned By</th>
-                    <th>created_at</th>
-                    <th>updated_at</th>
-                    <th>Action</th>
+                    <th>Transaction ID</th>
+                    <th>Products</th>
+                    <th>Total Price</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($product_index_controller as $data)
+                @foreach($purchaseHistory as $history)
                     <tr>
-                        <td>{{$data->id}}</td>
+                        <td>{{ $history['transaction']->id }}</td>
                         <td>
-                            <img height='100px' width='100px' alt="image of {{$data->product_name}}" src="{{ asset('/logo/product/'.$data->product_image)}}"/><br>
+                            <ol>
+                                @foreach($history['products'] as $product)
+                                    <li>{{ $product->product_name }} ({{ $product->quantity }} x Rp{{ number_format($product->price,2) }})</li>
+                                @endforeach
+                            </ol>
                         </td>
-                        <td>{{$data->product_name}}</td>
-                        <td>{{$data->product_type->product_type_name}}</td>
-                        <td>{{$data->price}}</td>
-                        <td>{{$data->hotel->hotel_name}}</td>
-                        <td>{{$data->created_at}}</td>
-                        <td>{{$data->updated_at}}</td>
-                        <td>
-                            <a href="{{ url('product/uploadLogo/'.$data->id) }}" class="btn btn-success">upload Product Picture</a>
-                            <a href="#editModal" class="btn btn-warning" data-toggle="modal" onclick="getEditFormProduct({{$data->id}})">Edit Product</a>
-                            <form method="POST" action="{{route('product.destroy',$data->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->product_name}} ? ');">
-                            </form>
-                        </td>
+                        <td>Rp {{ number_format($history['transaction']->total_price, 2) }}</td>
+                        <td>{{ $history['transaction']->created_at }}</td>
+                        <td>{{ $history['transaction']->updated_at }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -103,4 +61,3 @@
         </div>
     </div>
 @endsection
-

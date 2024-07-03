@@ -67,7 +67,7 @@
                     <th>product image</th>
                     <th>product name</th>
                     <th>product type</th>
-                    <th>price (Rp)</th>
+                    <th>price</th>
                     <th>Reserve</th>
                 </tr>
                 </thead>
@@ -80,7 +80,7 @@
                         </td>
                         <td>{{$data->product_name}}</td>
                         <td>{{$data->product_type_name}}</td>
-                        <td>{{$data->price}}</td>
+                        <td>Rp {{number_format($data->price,2)}}</td>
                         <td><input value="0" type="number" min="0" step="1" class="form-control" id="Quantity" name='form_quantity{{$data->id}}'
                                    aria-describedby="nameHelp" placeholder="Enter your quantity"></td>
                     </tr>
@@ -88,9 +88,10 @@
                 </tbody>
             </table>
                 <label for="payment">Please select your payment method</label>
+                <p style="color: green"><strong> (your point right now {{$points}} points) </strong></p>
                 <select name="payment" id="payment" class="form-control">
                         <option value="cash">cash</option>
-                        <option value="point">point (your point right now {{$points}} points)</option>
+                        <option value="point">point</option>
                 </select>
                 <br>
             <button type="submit" class="btn btn-primary">Pay the product(s)</button>

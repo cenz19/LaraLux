@@ -3,6 +3,7 @@
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
 /*
@@ -57,7 +58,11 @@ Route::resource('user', UserController::class);
 Route::get('hotel/report', [HotelController::class, 'reportTop']);
 Route::get('user/report', [UserController::class, 'topUser']);
 Route::get('products/report', [ProductController::class, 'showProductsByTransactions']);
-//CUSTOM
+
+
 //CUSTOM QUERY
 //1. get all product that owned by the selected hotel by using its hotel id
 Route::get('hotel/transaction/{hotel_id}', [ProductController::class, 'getProductByHotelId']);
+//2. get all transaction with those products name the user bought
+Route::get('/transaction/history', [TransactionController::class, 'history'])->name('transaction.history');
+

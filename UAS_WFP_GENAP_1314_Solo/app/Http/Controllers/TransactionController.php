@@ -62,6 +62,36 @@ class TransactionController extends Controller
     {
         //
     }
+    public function history(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $user_id = 1; // Replace with auth()->id() if using authentication
+        $user = DB::table('users')->where('id', $user_id)->first();
+        $points = $user->points;
+        $transactions = DB::table('transactions')
+            ->where('user_id', $user_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $purchaseHistory = [];
+
+        foreach ($transactions as $transaction) {
+            $products = DB::table('product_transactions')
+                ->join('products', 'product_transactions.product_id', '=', 'products.id')
+                ->where('product_transactions.transaction_id', $transaction->id)
+                ->get();
+
+            $purchaseHistory[] = [
+                'transaction' => $transaction,
+                'products' => $products
+            ];
+        }
+
+        return view('transaction.history', [
+            'purchaseHistory' => $purchaseHistory,
+            'points' =>$points,
+            'status' => session('status')
+        ]);
+    }
 
     public function checkout(Request $request)
     {
@@ -121,7 +151,7 @@ class TransactionController extends Controller
                 return redirect()->back()->with('status', 'Invalid payment method.');
             }
             DB::commit();
-            return redirect()->back()->with('status', $status_text);
+            return redirect()->route('transaction.history')->with('status', $status_text);
 //            return view($view)->with('status', $status_text);
         } catch (\Exception $e) {
             // Rollback the transaction if an error occurs

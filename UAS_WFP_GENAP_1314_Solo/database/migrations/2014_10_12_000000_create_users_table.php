@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->String('role');
-            $table->integer('points')->nullable();
+            $table->String('role')->default('pembeli');
+            $table->integer('points')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -522,6 +522,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li class="start active ">
+                        <a href={{ route('transaction.history') }}>
+                            <i class="icon-handbag"></i>
+                            <span class="title">Transaction History</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    <li class="start active ">
                         <a href={{ route('user.index') }}>
                             <i class="icon-user"></i>
                             <span class="title">Users</span>

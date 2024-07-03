@@ -35,7 +35,7 @@
                 <tr>
                     <th>Transaction ID</th>
                     <th>Products</th>
-                    <th>Total Price</th>
+                    <th>Total Price (include tax)</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                 </tr>
@@ -45,11 +45,11 @@
                     <tr>
                         <td>{{ $history['transaction']->id }}</td>
                         <td>
-                            <ol>
+                            <ul style="list-style-type:circle">
                                 @foreach($history['products'] as $product)
                                     <li>{{ $product->product_name }} ({{ $product->quantity }} x Rp{{ number_format($product->price,2) }})</li>
                                 @endforeach
-                            </ol>
+                            </ul>
                         </td>
                         <td>Rp {{ number_format($history['transaction']->total_price, 2) }}</td>
                         <td>{{ $history['transaction']->created_at }}</td>

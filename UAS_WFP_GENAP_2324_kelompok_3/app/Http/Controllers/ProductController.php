@@ -168,7 +168,7 @@ class ProductController extends Controller
     public function getProductByHotelId(Request $request)
     {
         $hotel_id = $request->hotel_id;
-        $user = DB::table('users')->where('id', 1)->first();
+        $user = DB::table('users')->where('id', auth()->id())->first();
         $points = $user->points;
         // Retrieve all products where hotel_id matches the given value using query builder
         $products_by_hotel_id = DB::table('products')

@@ -60,7 +60,9 @@
         <div class="container">
             <h2>Facility Table</h2>
             <p>Ini adalah tabel Facility</p>
+            @canany(['owner','staff'])
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Facility</a>
+            @endcanany
             <table class="table">
                 <thead>
                 <tr>
@@ -71,7 +73,9 @@
                     <th>Owned by product</th>
                     <th>created_at</th>
                     <th>updated_at</th>
+                    @canany(['owner','staff'])
                     <th>Action</th>
+                    @endcanany
                 </tr>
                 </thead>
                 <tbody>
@@ -86,6 +90,7 @@
                         <td>{{$data->product->product_name}}</td>
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->updated_at}}</td>
+                        @canany(['owner','staff'])
                         <td>
                             <a href="{{ url('facility/uploadLogo/'.$data->id) }}" class="btn btn-success">upload Facility Picture</a>
                             <a href="#modalEditA" class="btn btn-warning" data-toggle="modal" onclick="getEditFormFacility({{$data->id}})">Edit Facility</a>
@@ -95,6 +100,7 @@
                                 <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->facility_name}} ? ');">
                             </form>
                         </td>
+                        @endcanany
                     </tr>
                 @endforeach
                 </tbody>

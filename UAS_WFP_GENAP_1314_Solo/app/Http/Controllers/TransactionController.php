@@ -64,7 +64,7 @@ class TransactionController extends Controller
     }
     public function history(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $user_id = 1; // Replace with auth()->id() if using authentication
+        $user_id = auth()->id(); // Replace with auth()->id() if using authentication
         $user = DB::table('users')->where('id', $user_id)->first();
         $points = $user->points;
         $transactions = DB::table('transactions')
@@ -96,13 +96,14 @@ class TransactionController extends Controller
     public function checkout(Request $request)
     {
         $data = $request->all();
+        $user_id = auth()->id();
         $payment = $data['payment'];
         $totalPoints = 0;
         $totalPrice = 0;
         $view = '';
         $status_text = '';
         // Start a transaction to ensure data consistency
-        $user = DB::table('users')->where('id', 1)->first();
+        $user = DB::table('users')->where('id', $user_id)->first();
         $points = $user->points;
 
         DB::beginTransaction();
@@ -137,14 +138,14 @@ class TransactionController extends Controller
             if ($payment == 'point') {
 
                 if ($points * 100000 >= $totalPriceAfterTax && $totalPriceAfterTax >= 100000) {
-                    $this->deductUserPoints(1, floor($totalPriceAfterTax / 100000)); // Deduct points (implement this method)
+                    $this->deductUserPoints($user_id, floor($totalPriceAfterTax / 100000)); // Deduct points (implement this method)
                     $status_text = 'Checkout successful! Your point has been deducted by ' . floor($totalPriceAfterTax / 100000) . ' points.';
                 } else {
                     DB::rollback();
                     return redirect()->back()->with('status', 'Checkout failed! Insufficient points or invalid transaction.');
                 }
             } elseif ($payment == 'cash' && $totalPriceAfterTax > 0) {
-                $this->updateUserPoints(1, $totalPoints); // Assuming user ID 1 for demonstration
+                $this->updateUserPoints($user_id, $totalPoints); // Assuming user ID 1 for demonstration
                 $status_text = 'Checkout successful! Your point has been added by ' . $totalPoints . ' points.';
             } else {
                 DB::rollback();
@@ -163,8 +164,9 @@ class TransactionController extends Controller
     private function insertTransaction(): int
     {
         // Insert a transaction record and return the transaction ID
+        $user_id = auth()->id();
         return DB::table('transactions')->insertGetId([
-            'user_id' => 1, // Replace with auth()->id() if using authentication
+            'user_id' => $user_id, // Replace with auth()->id() if using authentication
             'total_price' => 0, // Placeholder for now, will update after calculating total price
             'created_at' => now(),
             'updated_at' => now(),

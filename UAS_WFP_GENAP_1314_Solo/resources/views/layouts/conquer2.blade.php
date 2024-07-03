@@ -518,6 +518,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="selected"></span>
                         </a>
                     </li>
+                    @canany(['pembeli'])
                     <li class="start active ">
                         <a href={{ route('transaction.history') }}>
                             <i class="icon-handbag"></i>
@@ -525,6 +526,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="selected"></span>
                         </a>
                     </li>
+                    @endcanany
+                    @canany(['owner', 'staff'])
                     <li class="start active ">
                         <a href={{ route('user.index') }}>
                             <i class="icon-user"></i>
@@ -532,20 +535,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="selected"></span>
                         </a>
                     </li>
-                    {{--                <li class="start active ">--}}
-                    {{--                    <a href={{ route('type.index') }}>--}}
-                    {{--                        <i class="icon-home"></i>--}}
-                    {{--                        <span class="title">Type</span>--}}
-                    {{--                        <span class="selected"></span>--}}
-                    {{--                    </a>--}}
-                    {{--                </li>--}}
-                    {{--                <li class="start active ">--}}
-                    {{--                    <a href={{ route('transaction.index') }}>--}}
-                    {{--                        <i class="icon-home"></i>--}}
-                    {{--                        <span class="title">Transaction</span>--}}
-                    {{--                        <span class="selected"></span>--}}
-                    {{--                    </a>--}}
-                    {{--                </li>--}}
+                    @endcanany
                 </ul>
             <!-- END SIDEBAR MENU -->
         </div>

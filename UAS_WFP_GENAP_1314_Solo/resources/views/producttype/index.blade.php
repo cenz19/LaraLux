@@ -57,7 +57,9 @@
         <div class="container">
             <h2>Product Type Table</h2>
             <p>Ini adalah tabel Product Type</p>
+            @canany(['owner', 'staff'])
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Product Type</a>
+            @endcanany
             <table class="table">
                 <thead>
                 <tr>
@@ -83,7 +85,7 @@
 
 
 
-
+        @canany(['owner', 'staff'])
         <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" >
@@ -110,6 +112,7 @@
                 </div>
             </div>
         </div>
+        @endcanany
 
     </div>
 @endsection

@@ -35,7 +35,9 @@
                 <tr>
                     <th>Transaction ID</th>
                     <th>Products</th>
-                    <th>Total Price (include tax)</th>
+                    <th>PPN</th>
+                    <th>Total Price</th>
+                    <th>Total Price (include PPN)</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                 </tr>
@@ -51,6 +53,8 @@
                                 @endforeach
                             </ul>
                         </td>
+                        <td>Rp {{number_format($history['transaction']->total_price*11/111, 2)}}</td>
+                        <td>Rp {{number_format($history['transaction']->total_price*100/111, 2)}}</td>
                         <td>Rp {{ number_format($history['transaction']->total_price, 2) }}</td>
                         <td>{{ $history['transaction']->created_at }}</td>
                         <td>{{ $history['transaction']->updated_at }}</td>

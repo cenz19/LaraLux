@@ -62,8 +62,8 @@
 {{--            <a href="{{route('hotel.report')}}" data-toggle="modal" class="btn btn-info">Top 3</a>--}}
             @canany(['owner', 'staff'])
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Hotel</a>
-            <a href="{{route('hoteltype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
             @endcanany
+            <a href="{{route('hoteltype.index')}}" data-toggle="modal" class="btn btn-info">Type</a>
             <table class="table">
                 <thead>
                 <tr>

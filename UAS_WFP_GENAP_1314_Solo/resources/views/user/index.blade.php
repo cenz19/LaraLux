@@ -60,7 +60,9 @@
         <div class="container">
             <h2>User</h2>
             <p>Ini adalah tabel user</p>
+            @canany(['owner'])
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New User</a>
+            @endcanany
             <table class="table">
                 <thead>
                 <tr>
@@ -72,7 +74,9 @@
                     <th>points</th>
                     <th>created_at</th>
                     <th>updated_at</th>
+                    @canany(['owner'])
                     <th>action</th>
+                    @endcanany
                 </tr>
                 </thead>
                 <tbody>
@@ -86,18 +90,19 @@
                     <td>{{$data->points}}</td>
                     <td>{{$data->created_at}}</td>
                     <td>{{$data->updated_at}}</td>
+                        @canany(['owner'])
                     <td><form method="POST" action="{{route('user.destroy',$data->id)}}">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{$data->id}} - {{$data->name}} ? ');">
-                        </form></td>
+                        </form></td>@endcanany
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
+    @canany(['owner'])
     <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" >
@@ -148,5 +153,6 @@
             </div>
         </div>
     </div>
+    @endcanany
 @endsection
 

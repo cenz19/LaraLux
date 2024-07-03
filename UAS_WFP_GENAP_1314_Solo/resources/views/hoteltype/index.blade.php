@@ -57,7 +57,9 @@
         <div class="container">
             <h2>Hotel Type Table</h2>
             <p>Ini adalah tabel Hotel Type</p>
+            @canany(['owner', 'staff'])
             <a href="#modalCreate" data-toggle="modal" class="btn btn-success">+ New Hotel Type</a>
+            @endcanany
             <table class="table">
                 <thead>
                 <tr>
